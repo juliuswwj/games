@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Laser Game</title>
+    <style type="text/css">
+        #editable-table {
+            border-collapse: collapse;
+        }
+
+        #editable-table th,
+        #editable-table td {
+            border: 1px solid black;
+            padding: 2px;
+            text-align: center;
+        }
+
+        #editable-table th {
+            background-color: gray;
+            color: white;
+        }
+
+        #editable-table select {
+            width: 100%;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 120px;
+        }
+
+        .button-group button {
+            margin: 2px;
+        }
+
+        .select-editable {
+            position: relative;
+            background-color: white;
+            border: solid grey 1px;
+            width: 120px;
+            height: 18px;
+        }
+
+        .select-editable select {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            font-size: 14px;
+            border: none;
+            width: 120px;
+            margin: 0;
+        }
+
+        .select-editable input {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100px;
+            padding: 1px;
+            font-size: 12px;
+            border: none;
+        }
+
+        .select-editable select:focus,
+        .select-editable input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas id="board" width="640" height="480" />
+    </div>
+
+    <div>
+        <table width="640">
+            <tr>
+                <td width="40">Game: </td>
+                <td class="select-editable">
+                    <select id="games" onchange="this.nextElementSibling.value=this.value; select()"></select>
+                    <input type="text" id="game" value="" onchange="select()" />
+                </td>
+                <td id="result" align="center"></td>
+                <td width="120">
+                    <button onclick="calGame()">C</button>
+                    <button onclick="updateGame(); updateMap()">^^^</button>
+                    <button id="save" onclick="saveGame()">Save</button>
+                </td>
+            </tr>
+        </table>
+        <table width="640" id="editable-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Pos1</th>
+                    <th>Pos2</th>
+                    <th>Pos3</th>
+                    <th>Pos4</th>
+                    <th class="button-group">
+                        <button onclick="addRow()">+</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="editable-table-body">
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript" src="laser.js"></script>
+
+</body>
+
+</html>
